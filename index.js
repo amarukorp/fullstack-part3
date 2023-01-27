@@ -77,6 +77,14 @@ app.post('/api/persons', (request,response)=>{
     name: body.name, 
     number: body.number
   }
+  if (!person.name || !person.number){
+    response.send({error: 'The name or number is missing'})
+  }
+  let nameInspector = phonebook.find(currentPerson => currentPerson.name === person.name)
+
+  if(nameInspector){
+    response.send({error:'The name already exists in the phonebook'})
+  }
 
   phonebook = phonebook.concat(person)
   response.json(person)
