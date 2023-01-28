@@ -31,21 +31,38 @@ app.get('/api/info', (resquest, response) => {
 })
 
 app.get('/api/persons/:id', (request, response) => {
-	const id = Number(request.params.id)
-	const person = phonebook.find((person) => person.id === id)
-
-	if (person) {
-		response.json(person)
-	} else {
-		response.status(404).end()
-	}
+	Person.findById(request.params.id)
+		.then((person) => {
+			if (person) {
+				response.json(person)
+			} else {
+				response.status(404).end()
+			}
+		})
+		.catch((error) => {
+			console.log(error)
+			response.status(500).end()
+		})
+	// const id = Number(request.params.id)
+	// const person = phonebook.find((person) => person.id === id)
+	// if (person) {
+	// 	response.json(person)
+	// } else {
+	// 	response.status(404).end()
+	// }
 })
 
 app.delete('/api/persons/:id', (request, response) => {
-	const id = Number(request.params.id)
-	phonebook = phonebook.filter((person) => person.id !== id)
-	console.log(phonebook)
-	response.status(204).end()
+	Person.findByIdAndRemove(request.params.id)
+		.then((result) => {
+			response.status(204).end()
+		})
+		.catch((error) => next(error))
+
+	// const id = Number(request.params.id)
+	// phonebook = phonebook.filter((person) => person.id !== id)
+	// console.log(phonebook)
+	// response.status(204).end()
 })
 
 // const generateId = () => {
