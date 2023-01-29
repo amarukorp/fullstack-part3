@@ -70,6 +70,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
 	Person.findByIdAndRemove(request.params.id)
+		// eslint-disable-next-line no-unused-vars
 		.then((result) => {
 			response.status(204).end()
 		})
@@ -139,6 +140,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 app.use(unknownEndpoint)
 app.use(errorHandler)
 
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`)
