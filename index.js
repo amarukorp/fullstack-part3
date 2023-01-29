@@ -4,6 +4,8 @@ const cors = require('cors')
 const app = express()
 require('dotenv').config()
 
+app.use(express.static('build'))
+
 const Person = require('./models/person')
 
 const unknownEndpoint = (request, response) => {
