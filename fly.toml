@@ -1,6 +1,6 @@
-# fly.toml file generated for misty-violet-7373 on 2023-01-28T12:50:54+02:00
+# fly.toml file generated for dawn-firefly-649 on 2023-01-29T20:26:12+02:00
 
-app = "misty-violet-7373"
+app = "dawn-firefly-649"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
